@@ -26,7 +26,7 @@ todos:
 isProject: false
 ---
 
-# Phase 4 — Homepage Polish Plan
+# Phase 4 — Homepage Polish Plan (3.6)
 
 ## Objectives
 
