@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* ============================================
+   AZUM Medical — Design System
+   ============================================ */
+
+:root {
+  /* Brand colors */
+  --color-primary: #5b4d9e;
+  --color-primary-dark: #4a3d82;
+  --color-accent: #c9a227;
+  --color-accent-muted: #e8d9a0;
+
+  /* Neutrals */
+  --color-white: #fefefe;
+  --color-ivory: #faf9f7;
+  --color-lavender: #f5f3f8;
+  --color-lavender-soft: #ebe8f0;
+  --color-gray-soft: #6b7280;
+  --color-gray-muted: #9ca3af;
+  --color-text: #1f2937;
+  --color-text-muted: #4b5563;
+
+  /* Semantic */
+  --background: var(--color-ivory);
+  --foreground: var(--color-text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-accent: var(--color-accent);
+  --color-accent-muted: var(--color-accent-muted);
+  --color-lavender: var(--color-lavender);
+  --color-lavender-soft: var(--color-lavender-soft);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-cormorant);
+}
+
+/* Base styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* Headline serif */
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+/* Prose — improved readability for paragraphs */
+.prose-body {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+/* Button base — consistent transitions */
+.btn-transition {
+  transition: color 0.15s ease-out, background-color 0.15s ease-out,
+    border-color 0.15s ease-out, box-shadow 0.15s ease-out,
+    transform 0.15s ease-out;
+}

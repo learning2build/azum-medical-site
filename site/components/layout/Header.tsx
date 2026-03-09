@@ -1,0 +1,138 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { SITE_CONFIG } from "@/lib/site-config";
+
+const NAV_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/patient-resources", label: "Patient Resources" },
+  { href: "/contact", label: "Contact" },
+];
+
+export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-200 ${
+        isScrolled
+          ? "border-[#e1d9f3]/80 bg-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(15,23,42,0.04)]"
+          : "border-[#ebe8f0]/60 bg-[#faf9f7]/95 backdrop-blur-sm"
+      }`}
+    >
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8 ${
+          isScrolled ? "py-0.5 sm:py-1" : "py-1 sm:py-1.5"
+        }`}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/site:azum-medical-logo.png"
+            alt="AZUM Medical"
+            width={267}
+            height={116}
+            className={`w-auto transition-all duration-200 ${
+              isScrolled ? "h-40 sm:h-48" : "h-56 sm:h-64"
+            }`}
+            priority
+          />
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-6 md:flex">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-base font-medium text-[#4b5563] transition-colors duration-150 hover:text-[#5b4d9e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5b4d9e]"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href={SITE_CONFIG.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="min-h-[44px] rounded-full bg-[#5b4d9e] px-5 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-150 ease-out hover:bg-[#4a3d82] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5b4d9e]"
+          >
+            Book Appointment
+          </a>
+        </nav>
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 text-[#4b5563] transition-colors hover:bg-[#ebe8f0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5b4d9e] md:hidden"
+          aria-expanded={mobileMenuOpen}
+          aria-label="Toggle menu"
+        >
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {mobileMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="border-t border-[#ebe8f0] bg-white px-4 py-2 md:hidden">
+          <nav className="flex flex-col gap-4">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="min-h-[44px] py-3 text-base font-medium text-[#4b5563] transition-colors hover:text-[#5b4d9e]"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href={SITE_CONFIG.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="min-h-[48px] rounded-full bg-[#5b4d9e] px-5 py-3 text-center font-semibold text-white transition-colors hover:bg-[#4a3d82]"
+            >
+              Book Appointment
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
