@@ -8,6 +8,7 @@ import { SITE_CONFIG } from "@/lib/site-config";
 const NAV_LINKS = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/insurance", label: "Insurance" },
   { href: "/patient-resources", label: "Patient Resources" },
   { href: "/contact", label: "Contact" },
 ];

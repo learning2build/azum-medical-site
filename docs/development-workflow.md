@@ -12,6 +12,27 @@ Then paste the following.
 
 # AZUM Medical Website – Development Workflow
 
+## Quick start — run the site locally
+
+**Always use these three steps:**
+
+1. **Open a terminal** (in Cursor or your system terminal).
+
+2. **Start the dev server:**
+   ```bash
+   cd site
+   npm run dev
+   ```
+   (First time only: run `npm install` before `npm run dev`.)
+
+3. **Open in your browser:**
+   ```
+   http://localhost:3000
+   ```
+   The site runs **only on port 3000**. If you see “port in use,” close the other terminal or app using 3000, then run `npm run dev` again.
+
+---
+
 ## Project Structure
 
 ```
@@ -36,21 +57,26 @@ Important:
 
 # Local Development
 
-Run the development server:
+Run the development server (from project root or from `site`):
 
 ```bash
 cd site
-npm install
+npm install    # first time only
 npm run dev
 ```
 
-Open:
+Then open **http://localhost:3000** in your browser. The dev server is fixed to port 3000.
 
-```
-http://localhost:3000
-```
+**If the site doesn’t load (“connection failed” or “refused”):**
 
-(or whatever port Next.js assigns)
+- In the terminal where you ran `npm run dev`, you should see `✓ Ready in ...`. If you don’t, the server didn’t start.
+- If it says “Port 3000 is in use,” either close the other app using 3000 or kill it:
+  ```bash
+  lsof -i :3000
+  kill -9 <PID>
+  ```
+  Then run `npm run dev` again.
+- Always use **http://localhost:3000** (not 3001 or 3002).
 
 ---
 
