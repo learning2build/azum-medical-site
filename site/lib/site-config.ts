@@ -19,13 +19,18 @@ export const SITE_CONFIG = {
   // Location — used for Hero kicker and TrustStrip
   locationCity: "Houston",
 
-  // Address
+  // Address (line1 for compact display; addressDisplay for Contact/Location page)
   address: {
     line1: "17115 Red Oak Dr Ste 213",
     line2: "Houston, TX",
     zip: "77090",
     line3: "Houston, TX",
+    /** Display format for Contact / Location page (matches azummedical.com/location) */
+    display: "17115 Red Oak Drive, Suite 213, Houston, TX 77090",
   },
+  /** Google Maps URL for directions (no API key required) */
+  googleMapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=17115+Red+Oak+Drive+Suite+213+Houston+TX+77090",
 
   // Office hours
   hours: {
