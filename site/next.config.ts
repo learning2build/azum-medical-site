@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         pathname: "/wp-content/uploads/**",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        pathname: "/wikipedia/commons/**",
+        search: "",
+      },
     ],
   },
 };

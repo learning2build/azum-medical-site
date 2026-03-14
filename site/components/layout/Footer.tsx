@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "@/lib/site-config";
 const FOOTER_LINKS = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
-  { href: "/patient-resources", label: "Patient Resources" },
+  { href: "/wellness-insights", label: "Wellness Insights" },
   { href: "/contact", label: "Contact" },
 ];
 

@@ -113,7 +113,7 @@ The site should feel like a boutique medical clinic, not a startup landing page.
 ## Navigation
 
 - Header navigation should stay simple.
-- Main nav items: About, Services, Insurance, Patient Resources, Contact.
+- Main nav items: About, Services, Insurance, Wellness Insights, Contact.
 - Primary CTA: **Book Appointment** — keep it visible and prominent.
 
 ---

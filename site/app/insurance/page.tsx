@@ -48,7 +48,9 @@ const INSURANCE_PLANS = [
   },
   {
     name: "Cigna",
-    logoUrl: null,
+    logoUrl: "/insurance/cigna.png",
+    width: 200,
+    height: 80,
   },
   {
     name: "Aetna",
@@ -101,49 +103,52 @@ export default function InsurancePage() {
 
         {/* Payment options */}
         <section className="border-b border-[#ebe8f0]/60 bg-white py-16 lg:py-20">
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="font-serif text-2xl font-semibold text-[#1f2937] sm:text-3xl">
               Payment options
             </h2>
-            <p className="mt-4 text-[#4b5563]">
+            <p className="mt-4 max-w-3xl text-[#4b5563]">
               We offer a hybrid model—elements from both traditional
               insurance-based care and concierge medicine—so we can fit most
               patients&apos; needs.
             </p>
 
-            <ul className="mt-12 space-y-10">
+            <ul className="mt-12 flex flex-col">
               {PAYMENT_OPTIONS.map((option, index) => (
-                <li key={option.title}>
-                  <div className="rounded-2xl border border-[#ebe8f0]/80 bg-[#faf9f7] p-6 sm:p-8">
-                    <div className="flex gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#5b4d9e]/10 font-semibold text-[#5b4d9e]">
-                        {index + 1}
-                      </span>
-                      <div>
-                        <h3 className="font-semibold text-[#1f2937]">
-                          {option.title}
-                        </h3>
-                        <p className="mt-1 text-sm font-medium text-[#5b4d9e]">
-                          {option.subtitle}
-                        </p>
-                        <p className="mt-4 text-[15px] leading-[1.65] text-[#4b5563]">
-                          {option.body}
-                        </p>
-                      </div>
+                <li
+                  key={option.title}
+                  className={`py-10 md:py-12 ${
+                    index < PAYMENT_OPTIONS.length - 1
+                      ? "border-b border-[#ebe8f0]"
+                      : ""
+                  }`}
+                >
+                  <div className="flex gap-4">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#5b4d9e]/10 font-semibold text-[#5b4d9e]">
+                      {index + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-[#1f2937]">
+                        {option.title}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-[#5b4d9e]">
+                        {option.subtitle}
+                      </p>
+                      <p className="mt-4 max-w-4xl text-[15px] leading-[1.65] text-[#4b5563] md:text-base">
+                        {option.body}
+                      </p>
                     </div>
                   </div>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 rounded-2xl border border-[#ebe8f0]/80 bg-[#f5f3f8] p-6">
-              <p className="text-[15px] leading-[1.65] text-[#4b5563]">
-                <strong className="text-[#1f2937]">Accepted forms of payment:</strong>{" "}
-                Cashier&apos;s check or money order (payable to Azum Medical), debit
-                cards, and major credit cards. Card payments are subject to a
-                processing fee. Personal checks are not accepted.
-              </p>
-            </div>
+            <p className="mt-10 border-t border-[#ebe8f0] pt-10 text-[15px] leading-[1.65] text-[#4b5563]">
+              <strong className="text-[#1f2937]">Accepted forms of payment:</strong>{" "}
+              Cashier&apos;s check or money order (payable to Azum Medical), debit
+              cards, and major credit cards. Card payments are subject to a
+              processing fee. Personal checks are not accepted.
+            </p>
           </div>
         </section>
 
@@ -192,7 +197,7 @@ export default function InsurancePage() {
 
         {/* CTA */}
         <section className="border-t border-[#ebe8f0]/60 bg-white py-16 lg:py-20">
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
             <h2 className="font-serif text-2xl font-semibold text-[#1f2937] sm:text-3xl">
               Affordable care for all
             </h2>

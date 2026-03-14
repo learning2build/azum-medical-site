@@ -567,7 +567,7 @@ Background:
 
 - About
 - Services
-- Patient Resources
+- Wellness Insights
 - Contact
 
 ---
