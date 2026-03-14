@@ -18,18 +18,71 @@ Then paste the following.
 
 1. **Open a terminal** (in Cursor or your system terminal).
 
-2. **Start the dev server:**
+2. **Start the dev server** — run this as a single line (the `&&` means “then”):
    ```bash
-   cd site
-   npm run dev
+   cd site && npm run dev
    ```
-   (First time only: run `npm install` before `npm run dev`.)
+   (First time only: run `npm install` inside `site` before `npm run dev`.)
 
 3. **Open in your browser:**
    ```
    http://localhost:3000
    ```
    The site runs **only on port 3000**. If you see “port in use,” close the other terminal or app using 3000, then run `npm run dev` again.
+
+**Copy-paste one-liner (from project root):**
+```bash
+cd site && npm run dev
+```
+Use `&&` between `cd site` and `npm run dev`. Typing `cd site npm run dev` (no `&&`) causes "cd: too many arguments" because the shell thinks the rest are arguments to `cd`.
+
+**If you see "EADDRINUSE: address already in use 0.0.0.0:3000":** Something is already using port 3000 (e.g. an old dev server). Run:
+```bash
+lsof -i :3000
+```
+Note the **PID** (second column, a number like `81716`). Then run (use your PID instead of 81716):
+```bash
+kill -9 81716
+```
+Then start the server again: `cd site && npm run dev`.
+
+**zsh vs bash:** On Mac the default shell is zsh. These commands work the same in zsh and bash; you don't need to change anything.
+
+**Why did 127.0.0.1 work but localhost didn't?** The dev server was bound only to the IPv4 loopback address (127.0.0.1). On some systems the name "localhost" resolves to the IPv6 address (::1) first; the server wasn't listening there, so the connection failed. It's now bound to all interfaces (0.0.0.0), so both **http://localhost:3000** and **http://127.0.0.1:3000** work.
+
+---
+
+## When you come back the next day
+
+Use this short routine so everything keeps working:
+
+1. **Open the project** in Cursor (or your editor) and open a terminal in the project folder.
+
+2. **Optional — pull latest** (if you use Git and might have changes from another machine or a teammate):
+   ```bash
+   git pull
+   ```
+
+3. **Go into the site and start the dev server:**
+   ```bash
+   cd site && npm run dev
+   ```
+   If you pulled and `package.json` or lockfile changed, run `npm install` once before `npm run dev`.
+
+4. **Open the site** in your browser: **http://localhost:3000** (or http://127.0.0.1:3000).
+
+5. **If something's broken** (weird errors, old code, or the server won't start):
+   - Stop the dev server (Ctrl+C in the terminal).
+   - Delete the build cache and restart:
+     ```bash
+     cd site && rm -rf .next && npm run dev
+     ```
+   - If it's still broken (e.g. after a Node or dependency upgrade), do a clean install:
+     ```bash
+     cd site && rm -rf node_modules .next && npm install && npm run dev
+     ```
+
+That's it. No need to reinstall or rebuild every day unless something changed.
 
 ---
 
@@ -60,10 +113,9 @@ Important:
 Run the development server (from project root or from `site`):
 
 ```bash
-cd site
-npm install    # first time only
-npm run dev
+cd site && npm run dev
 ```
+(First time: run `cd site && npm install` once, then `npm run dev`.)
 
 Then open **http://localhost:3000** in your browser. The dev server is fixed to port 3000.
 
@@ -76,7 +128,7 @@ Then open **http://localhost:3000** in your browser. The dev server is fixed to 
   kill -9 <PID>
   ```
   Then run `npm run dev` again.
-- Always use **http://localhost:3000** (not 3001 or 3002).
+- Use **http://localhost:3000** or **http://127.0.0.1:3000** (same site; if one fails, try the other).
 
 ---
 
