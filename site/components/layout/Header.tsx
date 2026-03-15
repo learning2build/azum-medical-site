@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { SERVICES, isServiceComingSoon } from "@/lib/services-config";
 
@@ -17,9 +18,14 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const servicesTriggerRef = useRef<HTMLDivElement>(null);
   const servicesCloseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const updateDropdownPosition = () => {
     if (servicesTriggerRef.current) {
@@ -167,48 +173,49 @@ export function Header() {
         </button>
       </div>
 
-      {/* Desktop Services dropdown — vertical menu, fixed under the Services link */}
-      {servicesOpen && (
-        <div
-          className="fixed z-[60] hidden min-w-[220px] -translate-y-px rounded-b-xl border border-t-0 border-[#ebe8f0]/80 bg-white py-2 shadow-lg shadow-[#5b4d9e]/10 md:block"
-          style={{
-            top: dropdownPosition.top,
-            left: dropdownPosition.left,
-          }}
-          onMouseEnter={openServices}
-          onMouseLeave={closeServices}
-        >
-          <Link
-            href="/services"
-            className="block px-4 py-2.5 text-sm font-medium text-[#1f2937] transition-colors hover:bg-[#f5f3f9] hover:text-[#5b4d9e]"
-            onClick={() => setServicesOpen(false)}
+      {/* Desktop Services dropdown — portaled to body so it isn't clipped by header backdrop-blur */}
+      {mounted && servicesOpen && createPortal(
+          <div
+            className="fixed z-[60] hidden min-w-[220px] -translate-y-px rounded-b-xl border border-t-0 border-[#ebe8f0]/80 bg-white py-2 shadow-lg shadow-[#5b4d9e]/10 md:block"
+            style={{
+              top: dropdownPosition.top,
+              left: dropdownPosition.left,
+            }}
+            onMouseEnter={openServices}
+            onMouseLeave={closeServices}
           >
-            All Services
-          </Link>
-          <div className="my-1 border-t border-[#ebe8f0]/60" />
-          {SERVICES.map((s) =>
-            isServiceComingSoon(s) ? (
-              <div
-                key={s.slug}
-                className="block px-4 py-2.5 text-sm text-[#4b5563]"
-                aria-disabled
-              >
-                {s.title}
-                <span className="ml-1.5 text-xs text-[#5b4d9e]">(Coming soon)</span>
-              </div>
-            ) : (
-              <Link
-                key={s.slug}
-                href={`/services/${s.slug}`}
-                className="block px-4 py-2.5 text-sm text-[#4b5563] transition-colors hover:bg-[#f5f3f9] hover:text-[#5b4d9e]"
-                onClick={() => setServicesOpen(false)}
-              >
-                {s.title}
-              </Link>
-            )
-          )}
-        </div>
-      )}
+            <Link
+              href="/services"
+              className="block px-4 py-2.5 text-sm font-medium text-[#1f2937] transition-colors hover:bg-[#f5f3f9] hover:text-[#5b4d9e]"
+              onClick={() => setServicesOpen(false)}
+            >
+              All Services
+            </Link>
+            <div className="my-1 border-t border-[#ebe8f0]/60" />
+            {SERVICES.map((s) =>
+              isServiceComingSoon(s) ? (
+                <div
+                  key={s.slug}
+                  className="block px-4 py-2.5 text-sm text-[#4b5563]"
+                  aria-disabled
+                >
+                  {s.title}
+                  <span className="ml-1.5 text-xs text-[#5b4d9e]">(Coming soon)</span>
+                </div>
+              ) : (
+                <Link
+                  key={s.slug}
+                  href={`/services/${s.slug}`}
+                  className="block px-4 py-2.5 text-sm text-[#4b5563] transition-colors hover:bg-[#f5f3f9] hover:text-[#5b4d9e]"
+                  onClick={() => setServicesOpen(false)}
+                >
+                  {s.title}
+                </Link>
+              )
+            )}
+          </div>,
+          document.body
+        )}
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
