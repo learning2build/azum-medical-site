@@ -60,7 +60,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full overflow-visible border-b transition-all duration-200 ${
+      className={`w-full overflow-visible border-b transition-all duration-200 ${
         isScrolled
           ? "border-[#e1d9f3]/80 bg-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(15,23,42,0.04)]"
           : "border-[#ebe8f0]/60 bg-[#faf9f7]/95 backdrop-blur-sm"
