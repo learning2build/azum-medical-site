@@ -56,11 +56,11 @@ export default async function ArticlePage({ params }: Props) {
             <div className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-[#1f2937] prose-p:text-[#4b5563] prose-p:leading-[1.7]">
               {article.sections.map((section, i) => (
                 <div key={i} className="mb-10">
-                  {section.heading && (
+                  {"heading" in section && section.heading ? (
                     <h2 className="mb-4 text-2xl font-semibold text-[#1f2937]">
                       {section.heading}
                     </h2>
-                  )}
+                  ) : null}
                   <div className="space-y-4">
                     {section.paragraphs.map((p, j) => (
                       <p key={j}>{p}</p>
