@@ -62,7 +62,15 @@ A high-level tracker of updates. Entries are **grouped by date** (oldest first, 
 
 ### Contact (`/contact`)
 
-- **Send Us a Message** form (`ContactMessageForm`) at bottom of page – submits via **mailto** prefilled to `info@azummedical.com` (opens the user’s mail app).
+- **Send Us a Message** (`ContactMessageForm`) – **POST**s JSON to **`/api/contact`**; email is sent with **[Resend](https://resend.com)**. **`CONTACT_EMAIL_TO`** is required. **`CONTACT_FROM_EMAIL`** is required when **`VERCEL`** is set; locally, if unset, the API uses `AZUM Medical <onboarding@resend.dev>`.
+
+- **Anti-spam / abuse:** hidden honeypot (`company` — non-empty body gets a fake `{ ok: true }` without sending mail). **Cloudflare Turnstile:** server verifies via `site/lib/contact-server.ts` (`verifyTurnstileToken` → Cloudflare `siteverify`); widget from `@marsidev/react-turnstile` when `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is set; **`TURNSTILE_SECRET_KEY` required on Vercel**. **Optional rate limit:** `@upstash/ratelimit` + `@upstash/redis`, sliding window **5 requests / hour / IP** (from `x-forwarded-for` / `x-real-ip`) when both Upstash REST env vars are set.
+
+- **Validation & email body:** required first/last/email/message; email format check; message cap **8000** characters; `oneLine()` strips newlines from names/phone used in subject and body.
+
+- **Packages:** `resend`, `@marsidev/react-turnstile`, `@upstash/ratelimit`, `@upstash/redis`.
+
+- **Documentation:** `site/.env.example`, **`docs/development-workflow.md`** (contact env table). Deferred setup steps for when you wire production: **`docs/todo-contact-form-production.md`**. **`site/.env.example`** uses placeholders only (no real API keys or inboxes committed).
 
 - Top intro: title **Azum Medical** (replacing “Our Location” only); expanded “Get in Touch” block was reverted so the top matches the earlier simple intro except for the new title.
 
@@ -82,7 +90,7 @@ A high-level tracker of updates. Entries are **grouped by date** (oldest first, 
 
 ## Follow-ups to consider
 
-- [ ] Replace mailto contact form with Formspree, Web3Forms, or server-side email when ready.
+- [ ] **Contact form on production** – When ready, follow **`docs/todo-contact-form-production.md`** (Resend keys, `CONTACT_EMAIL_TO` / `CONTACT_FROM_EMAIL`, Turnstile on Vercel, optional Upstash).
 
 - [ ] Adjust floating nav scroll threshold or position if needed.
 
@@ -92,4 +100,4 @@ A high-level tracker of updates. Entries are **grouped by date** (oldest first, 
 
 ---
 
-*Changelog entries: March 15, 2025 · March 21, 2026 · document last edited March 21, 2026*
+*Changelog entries: March 15, 2025 · March 21, 2026 · document last edited March 21, 2026 (contact API / env & docs pass)*

@@ -96,18 +96,29 @@ Add **Environment Variables** in Vercel for anything in `site/.env.example` (e.g
 
 ---
 
-## Contact form (Resend)
+## Contact form (Resend + Turnstile)
 
-The **Send Us a Message** block on `/contact` POSTs to `POST /api/contact`, which sends email via [Resend](https://resend.com).
+The **Send Us a Message** block on `/contact` POSTs to `POST /api/contact`. Email is sent with [Resend](https://resend.com). **Spam control:** Cloudflare [Turnstile](https://developers.cloudflare.com/turnstile/) (required on Vercel), optional **Upstash** rate limit (5 sends / hour / IP), and a hidden honeypot field.
 
-1. Sign up at Resend, create an **API key**.
-2. In `site/`, copy `.env.example` → `.env.local` and set:
-   - **`RESEND_API_KEY`** — required.
-   - **`CONTACT_EMAIL_TO`** — optional; defaults to `cryph00@gmail.com`.
-   - **`CONTACT_FROM_EMAIL`** — sender shown in the inbox (must be allowed in Resend). Until you [verify a domain](https://resend.com/docs/dashboard/domains/introduction), use Resend’s test sender, e.g. `AZUM Medical <onboarding@resend.dev>` (often limited to the email on your Resend account).
-3. Redeploy with the same variables in **Vercel → Settings → Environment Variables**.
+### Required environment variables
 
-Without `RESEND_API_KEY`, the API returns 503 and the form shows a configuration error.
+| Variable | Purpose |
+| -------- | ------- |
+| `RESEND_API_KEY` | Resend API key |
+| `CONTACT_EMAIL_TO` | Where submissions are delivered (not stored in repo) |
+| `CONTACT_FROM_EMAIL` | **Required on Vercel** — must be a [verified domain](https://resend.com/docs/dashboard/domains/introduction) sender, e.g. `AZUM Medical <hello@yourdomain.com>` |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Turnstile widget (public) |
+| `TURNSTILE_SECRET_KEY` | Turnstile server verification (**required** whenever `VERCEL` is set) |
+
+Local dev without Turnstile keys: the widget is hidden and the API skips captcha (only when **not** running on Vercel). For a realistic local test, add Turnstile keys from the Cloudflare dashboard.
+
+### Optional
+
+- **`UPSTASH_REDIS_REST_URL`** + **`UPSTASH_REDIS_REST_TOKEN`** — [Upstash Redis](https://upstash.com) for per-IP rate limiting.
+
+Copy `site/.env.example` → `.env.local`, fill in values, and mirror them in **Vercel → Environment Variables** for Preview + Production. Redeploy after changes.
+
+If `RESEND_API_KEY`, `CONTACT_EMAIL_TO`, or (on Vercel) Turnstile / `CONTACT_FROM_EMAIL` are missing, the API returns **503** with a generic error.
 
 ---
 
