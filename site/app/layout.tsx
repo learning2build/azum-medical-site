@@ -16,9 +16,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AZUM Medical | Personalized Primary Care | Scottsdale",
+  title: "AZUM Medical | Personalized Primary Care | Houston",
   description:
-    "Compassionate, modern primary care focused on prevention, wellness, and long-term health. Serving Scottsdale and surrounding communities. Book your appointment today.",
+    "Compassionate, modern primary care focused on prevention, wellness, and long-term health. Serving Houston and surrounding communities. Book your appointment today.",
 };
 
 export default function RootLayout({
