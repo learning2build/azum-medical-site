@@ -83,19 +83,10 @@ export function ContactMessageForm() {
   }
 
   return (
-    <section className="border-t border-[#ebe8f0] bg-[#faf9f7] py-14 lg:py-16">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-        <h2 className="font-serif text-2xl font-semibold text-[#1f2937] sm:text-3xl">
-          Send Us a Message
-        </h2>
-        <p className="mt-2 text-sm text-[#6b7280]">
-          Submit the form and we&apos;ll receive your message by email. You
-          don&apos;t need to open your mail app.
-        </p>
-
+    <>
         {status === "success" ? (
           <div
-            className="mt-8 rounded-2xl border border-[#d4e8dc] bg-[#f0faf3] px-5 py-4 text-[#166534]"
+            className="rounded-2xl border border-[#d4e8dc] bg-[#f0faf3] px-5 py-4 text-[#166534]"
             role="status"
           >
             <p className="font-medium">Thanks — your message was sent.</p>
@@ -113,7 +104,7 @@ export function ContactMessageForm() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="relative mt-8 space-y-6"
+            className="relative space-y-6"
           >
             {status === "error" && errorMessage ? (
               <p
@@ -245,7 +236,6 @@ export function ContactMessageForm() {
             </button>
           </form>
         )}
-      </div>
-    </section>
+    </>
   );
 }

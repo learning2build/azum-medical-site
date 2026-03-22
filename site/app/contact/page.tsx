@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ContactMessageForm } from "@/components/contact/ContactMessageForm";
+import Link from "next/link";
 import { ClockIcon } from "@/components/icons/ClockIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -125,6 +125,14 @@ export default function ContactPage() {
                         {SITE_CONFIG.email}
                       </a>
                     </li>
+                    <li className="pt-1">
+                      <Link
+                        href="/contact/message"
+                        className={`${contactLink} font-medium`}
+                      >
+                        Send us a message online →
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -184,8 +192,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <ContactMessageForm />
-
         {/* CTA */}
         <section className="border-t border-[#ebe8f0] bg-[#faf9f7] py-14">
           <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
@@ -193,6 +199,12 @@ export default function ContactPage() {
               Ready to schedule? Book an appointment online or call us.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/contact/message"
+                className="min-h-[48px] rounded-full border-2 border-[#ebe8f0] bg-white px-8 py-3 font-semibold text-[#374151] transition-all duration-150 hover:border-[#5b4d9e]/40 hover:text-[#5b4d9e]"
+              >
+                Send a message
+              </Link>
               <a
                 href={SITE_CONFIG.bookingUrl}
                 target="_blank"
