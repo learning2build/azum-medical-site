@@ -1,0 +1,2 @@
+# macOS — never commit Finder metadata (site/.gitignore only covers site/)
+.DS_Store
