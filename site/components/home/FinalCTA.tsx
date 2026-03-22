@@ -2,9 +2,9 @@ import { SITE_CONFIG } from "@/lib/site-config";
 
 export function FinalCTA() {
   return (
-    <section className="bg-gradient-to-br from-[#5b4d9e] to-[#4a3d82] py-20 lg:py-24">
+    <section className="bg-gradient-to-br from-[#5b4d9e] to-[#4a3d82] pt-20 pb-12 lg:pt-24 lg:pb-14">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl font-semibold text-white sm:text-4xl">
+        <h2 className="font-serif text-2xl font-semibold leading-tight text-white sm:text-3xl">
           Transform Your Health Today with AZUM Medical!
         </h2>
         <p className="mt-6 text-lg leading-[1.7] text-white/90">
