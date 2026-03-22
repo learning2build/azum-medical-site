@@ -1,5 +1,6 @@
 "use client";
 
+import { Turnstile } from "@marsidev/react-turnstile";
 import { useState } from "react";
 
 const inputClass =
@@ -7,11 +8,16 @@ const inputClass =
 
 const labelClass = "block text-sm font-medium text-[#374151]";
 
+const turnstileSiteKey =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
+
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 export function ContactMessageForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,8 +28,15 @@ export function ContactMessageForm() {
     const email = String(fd.get("email") ?? "").trim();
     const phone = String(fd.get("phone") ?? "").trim();
     const message = String(fd.get("message") ?? "").trim();
+    const company = String(fd.get("company") ?? "").trim();
 
     if (!first || !last || !email || !message) return;
+
+    if (turnstileSiteKey && !captchaToken) {
+      setErrorMessage("Please complete the security check below.");
+      setStatus("error");
+      return;
+    }
 
     setStatus("submitting");
     setErrorMessage(null);
@@ -32,7 +45,15 @@ export function ContactMessageForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ first, last, email, phone, message }),
+        body: JSON.stringify({
+          first,
+          last,
+          email,
+          phone,
+          message,
+          company,
+          turnstileToken: captchaToken,
+        }),
       });
 
       const data = (await res.json().catch(() => ({}))) as {
@@ -44,14 +65,20 @@ export function ContactMessageForm() {
           data.error || "Something went wrong. Please try again or call us."
         );
         setStatus("error");
+        setCaptchaToken(null);
+        setCaptchaKey((k) => k + 1);
         return;
       }
 
       setStatus("success");
+      setCaptchaToken(null);
+      setCaptchaKey((k) => k + 1);
       form.reset();
     } catch {
       setErrorMessage("Network error. Check your connection and try again.");
       setStatus("error");
+      setCaptchaToken(null);
+      setCaptchaKey((k) => k + 1);
     }
   }
 
@@ -84,7 +111,10 @@ export function ContactMessageForm() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="relative mt-8 space-y-6"
+          >
             {status === "error" && errorMessage ? (
               <p
                 className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
@@ -93,6 +123,21 @@ export function ContactMessageForm() {
                 {errorMessage}
               </p>
             ) : null}
+
+            {/* Honeypot — leave hidden; bots often fill it */}
+            <div
+              className="pointer-events-none absolute -left-[10000px] h-0 w-0 overflow-hidden opacity-0"
+              aria-hidden="true"
+            >
+              <label htmlFor="contact-company">Company</label>
+              <input
+                id="contact-company"
+                name="company"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
 
             <div>
               <span className={labelClass}>
@@ -170,12 +215,26 @@ export function ContactMessageForm() {
                 id="contact-message"
                 name="message"
                 required
+                maxLength={8000}
                 rows={5}
                 className={`${inputClass} resize-y min-h-[8rem]`}
                 placeholder="How can we help you?"
                 disabled={status === "submitting"}
               />
             </div>
+
+            {turnstileSiteKey ? (
+              <div className="flex justify-center">
+                <Turnstile
+                  key={captchaKey}
+                  siteKey={turnstileSiteKey}
+                  onSuccess={setCaptchaToken}
+                  onExpire={() => setCaptchaToken(null)}
+                  onError={() => setCaptchaToken(null)}
+                  options={{ theme: "light" }}
+                />
+              </div>
+            ) : null}
 
             <button
               type="submit"
