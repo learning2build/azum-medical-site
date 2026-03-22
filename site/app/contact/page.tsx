@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ClockIcon } from "@/components/icons/ClockIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/layout/MobileStickyCTA";
@@ -56,15 +57,27 @@ export default function ContactPage() {
                 </div>
 
                 <div className="rounded-2xl border border-[#ebe8f0]/80 bg-[#faf9f7]/50 p-6 shadow-sm">
-                  <h2 className="font-semibold text-[#1f2937]">
+                  <h2 className="flex items-center gap-2 font-semibold text-[#1f2937]">
+                    <ClockIcon className="h-5 w-5 shrink-0 text-[#5b4d9e]" />
                     Hours of Operation
                   </h2>
-                  <p className="mt-3 text-[#4b5563]">
-                    {SITE_CONFIG.hours.weekdays}
-                  </p>
-                  <p className="mt-1 text-[#4b5563]">
-                    {SITE_CONFIG.hours.weekends}
-                  </p>
+                  <div className="mt-4 grid grid-cols-[auto_1fr] gap-x-2 gap-y-3 text-sm">
+                    <span className="font-medium text-[#1f2937]">
+                      {SITE_CONFIG.hours.weekday.days}
+                    </span>
+                    <span className="font-normal text-[#4b5563]">
+                      {SITE_CONFIG.hours.weekday.time}
+                    </span>
+                    <span className="font-medium text-[#1f2937]">
+                      {SITE_CONFIG.hours.weekend.days}
+                    </span>
+                    <div className="font-normal text-[#4b5563]">
+                      <span>{SITE_CONFIG.hours.weekend.status}</span>
+                      <p className="mt-1.5 text-xs font-normal leading-snug text-[#6b7280]">
+                        {SITE_CONFIG.hours.weekend.note}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="rounded-2xl border border-[#ebe8f0]/80 bg-[#faf9f7]/50 p-6 shadow-sm">

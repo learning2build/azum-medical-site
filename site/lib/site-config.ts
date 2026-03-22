@@ -3,6 +3,9 @@
  * Booking links to the clinic's existing Kareo scheduling system.
  */
 
+const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/search?q=Azum+Medical+Reviews" as const;
+
 export const SITE_CONFIG = {
   // External booking (Kareo)
   bookingUrl: "https://practice.kareo.com/azummedical",
@@ -32,12 +35,24 @@ export const SITE_CONFIG = {
   googleMapsUrl:
     "https://www.google.com/maps/search/?api=1&query=17115+Red+Oak+Drive+Suite+213+Houston+TX+77090",
 
-  // Office hours
+  // Office hours (structured for footer, contact, etc.)
   hours: {
-    weekdays: "Mon–Thu: 8am–1pm",
-    weekends: "Fri–Sun: Office closed (TeleMedicine available)",
+    weekday: { days: "Mon–Thu", time: "8:00 AM – 1:00 PM" },
+    weekend: {
+      days: "Fri–Sun",
+      status: "Closed",
+      note: "Telemedicine available",
+    },
   },
 
-  // Social / Reviews
-  googleReviewsUrl: "https://www.google.com/search?q=azum+medical+reviews",
+  // Social / Reviews (footer icons + testimonials link)
+  googleReviewsUrl: GOOGLE_REVIEWS_URL,
+  /** Matches azummedical.com footer; opens in new tab from site footer. */
+  social: {
+    facebook: "https://www.facebook.com/profile.php?id=61587047326376",
+    instagram: "https://www.instagram.com/azum_medical/",
+    youtube: "https://www.youtube.com/@Azum_Medical",
+    linkedin: "https://www.linkedin.com/azum-medical/",
+    google: GOOGLE_REVIEWS_URL,
+  },
 } as const;
