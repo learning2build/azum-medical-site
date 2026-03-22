@@ -10,10 +10,10 @@ export const SERVICES = [
     shortDescription:
       "Proactive health screenings and wellness checks to keep you feeling your best.",
     description:
-      "Stay ahead of your health with regular screenings, wellness exams, and preventive care designed to maintain long-term health and vitality.",
+      "Preventive care for lifelong health—women’s health support, annual physicals, immunizations, and personalized wellness at AZUM Medical in Houston.",
     body: [
-      "At AZUM Medical we believe prevention is the best medicine. Our preventative care services include annual wellness visits, age-appropriate health screenings, immunizations, and lifestyle counseling to help you stay healthy for years to come.",
-      "We focus on identifying risk factors early and working with you on a personalized plan—whether that’s nutrition, exercise, or managing stress—so you can thrive.",
+      "Stay proactive about your health with personalized preventive care, including screenings, family planning, menopause support, annual physicals, and vaccinations.",
+      "We combine vital sign monitoring, recommended screenings, and lifestyle guidance so you can build long-term well-being with a team you trust.",
     ],
   },
   {
@@ -22,10 +22,10 @@ export const SERVICES = [
     shortDescription:
       "Same-day and urgent care for illness, injury, and sudden health concerns.",
     description:
-      "When you need prompt attention for an illness or injury, we’re here to provide timely, compassionate acute care.",
+      "Comprehensive acute care at AZUM Medical for non-life-threatening issues—sports physicals, UTIs, minor burns and skin infections, ear pain, and more.",
     body: [
-      "Our acute care services cover common illnesses such as colds, flu, infections, and minor injuries. We offer same-day or next-day appointments when possible so you can get the care you need without a long wait.",
-      "Whether you have a sore throat, urinary tract infection, or a sprain, our team will evaluate you, recommend treatment, and follow up as needed—all within a familiar, patient-centered setting.",
+      "We address a variety of non-life-threatening medical issues promptly and effectively, with an experienced team focused on the care you need when you need it.",
+      "Services include sports physicals, urinary tract infection care, treatment for minor burns or skin infections, ear pain management, and more—visit us for fast, reliable, professional care.",
     ],
   },
   {
@@ -34,10 +34,10 @@ export const SERVICES = [
     shortDescription:
       "Personalized care for diabetes, hypertension, and other long-term conditions.",
     description:
-      "We help you take control of chronic conditions like diabetes and hypertension with personalized, ongoing care.",
+      "Chronic disease management at AZUM Medical—diabetes care, hypertension support, and cholesterol management for better quality of life.",
     body: [
-      "Managing a chronic condition can feel overwhelming. At AZUM Medical we work with you to create a clear, sustainable plan that fits your life. We support conditions such as diabetes, hypertension, high cholesterol, asthma, and other metabolic or long-term health needs.",
-      "Through regular check-ins, medication management, and lifestyle guidance, we aim to improve your day-to-day well-being and reduce the risk of complications.",
+      "Manage your health and your future with comprehensive diabetes care, blood pressure monitoring with lifestyle and medication support, and cholesterol screenings with heart-healthy guidance.",
+      "Our approach empowers you to live well despite chronic conditions through personalized plans and ongoing support.",
     ],
   },
   {
@@ -46,10 +46,10 @@ export const SERVICES = [
     shortDescription:
       "Connect with your healthcare provider from the comfort of your home.",
     description:
-      "Healthcare at your fingertips—connect with your provider via secure video visits from home.",
+      "Convenient telemedicine at AZUM Medical—schedule online, join secure virtual visits, and get follow-up care from home.",
     body: [
-      "Telemedicine visits let you see your provider without traveling to the office. They’re ideal for follow-ups, medication reviews, minor illnesses, and routine questions when an in-person exam isn’t required.",
-      "We use a secure, HIPAA-compliant platform so you can have a private, face-to-face conversation with your doctor from your phone, tablet, or computer. Schedule a telemedicine visit when it’s convenient for you.",
+      "Your health, at your convenience. Consult with trusted medical professionals from the comfort of your home using our secure, HIPAA-compliant platform.",
+      "Schedule your virtual visit online, join by video or chat, then receive follow-up instructions and prescriptions as needed—without travel when an in-person exam isn’t required.",
     ],
   },
   {
@@ -58,10 +58,10 @@ export const SERVICES = [
     shortDescription:
       "Whole-person care that supports mind, body, and lifestyle for lasting wellness.",
     description:
-      "Our holistic wellness approach addresses the whole person—physical health, stress, sleep, and lifestyle—so you can feel your best.",
+      "Holistic wellness at AZUM Medical—meal prep guidance, nutrition support, and weight goals coaching for a balanced, healthy life.",
     body: [
-      "Holistic wellness at AZUM Medical goes beyond treating symptoms. We look at nutrition, activity, sleep, stress, and mental well-being to create a plan that fits your life and goals.",
-      "Whether you want to optimize energy, improve sleep, or build sustainable healthy habits, we work with you to design a personalized path to lasting wellness.",
+      "Empower your wellness journey with a comprehensive approach: customized meal plans, shopping tips, portion guidance, and support for sustainable weight goals.",
+      "We combine coaching, metabolic awareness, and practical strategies so you can thrive long term.",
     ],
   },
   {
@@ -70,10 +70,10 @@ export const SERVICES = [
     shortDescription:
       "Personalized support to reach and maintain a healthy weight in a sustainable way.",
     description:
-      "Structured, compassionate support to help you reach your weight goals through evidence-based strategies and ongoing care.",
+      "Medically supervised weight management at AZUM Medical—research-based program with counseling and GLP-1 options coming soon.",
     body: [
-      "Our weight management program is designed around you—your health history, goals, and lifestyle. We combine medical oversight with practical guidance on nutrition, activity, and behavior so you can make lasting changes.",
-      "We focus on sustainable habits and overall health, not quick fixes. Regular check-ins help keep you on track and adjust the plan as needed.",
+      "Our upcoming weight loss program will pair one-on-one education and counseling with prescription appetite support (including GLP-1), tailored to your metabolism.",
+      "Exercise access and group workout sessions will be part of the offering. Contact us or book an appointment for care today; program details coming soon.",
     ],
   },
   {

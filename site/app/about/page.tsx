@@ -1,12 +1,12 @@
+import { AboutPageContent } from "@/components/about/AboutPageContent";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/layout/MobileStickyCTA";
-import { SITE_CONFIG } from "@/lib/site-config";
 
 export const metadata = {
-  title: "About | AZUM Medical",
+  title: "About Us | AZUM Medical",
   description:
-    "Learn about AZUM Medical, our mission, and our patient-centered approach to healthcare.",
+    "Practice philosophy and approach at AZUM Medical—patient-centered care, community health, evidence-based treatment, and inclusive primary care in Houston.",
 };
 
 export default function AboutPage() {
@@ -14,30 +14,7 @@ export default function AboutPage() {
     <>
       <Header />
       <main className="min-h-screen pb-24 md:pb-0">
-        <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-          <h1 className="font-serif text-4xl font-semibold text-[#1f2937]">
-            About AZUM Medical
-          </h1>
-          <p className="mt-6 text-lg text-[#4b5563]">
-            Content for this page is coming soon. In the meantime, please{" "}
-            <a
-              href={SITE_CONFIG.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-[#5b4d9e] hover:underline"
-            >
-              book an appointment
-            </a>{" "}
-            or{" "}
-            <a
-              href="/contact"
-              className="font-semibold text-[#5b4d9e] hover:underline"
-            >
-              contact us
-            </a>
-            .
-          </p>
-        </div>
+        <AboutPageContent />
       </main>
       <Footer />
       <MobileStickyCTA />

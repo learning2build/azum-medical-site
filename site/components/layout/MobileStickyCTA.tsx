@@ -13,7 +13,7 @@ export function MobileStickyCTA() {
         href={SITE_CONFIG.bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex min-h-[48px] flex-1 items-center justify-center rounded-full bg-[#5b4d9e] py-3 font-semibold text-white shadow-sm transition-colors hover:bg-[#4a3d82]"
+        className="flex min-h-[48px] flex-1 items-center justify-center rounded-full bg-[#5b4d9e] py-3 font-semibold text-white shadow-[0_2px_10px_rgba(74,61,130,0.32)] transition-colors hover:bg-[#4a3d82] hover:shadow-[0_3px_14px_rgba(74,61,130,0.38)]"
       >
         Book Appointment
       </a>

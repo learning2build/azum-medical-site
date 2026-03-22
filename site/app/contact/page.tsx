@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ContactMessageForm } from "@/components/contact/ContactMessageForm";
 import { ClockIcon } from "@/components/icons/ClockIcon";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,6 +8,14 @@ import { SITE_CONFIG } from "@/lib/site-config";
 
 /** Add filenames here; put the actual files in site/public/location/ (e.g. .webp from original site) */
 const LOCATION_PHOTOS = ["location-1.webp", "location-2.webp", "location-3.webp"];
+
+const contactCardTitle =
+  "text-base font-semibold leading-snug tracking-tight text-[#1f2937]";
+
+const contactCardBody = "mt-4 text-sm leading-relaxed text-[#4b5563]";
+
+const contactLink =
+  "text-[#374151] underline decoration-transparent underline-offset-2 transition-colors hover:text-[#5b4d9e] hover:underline hover:decoration-[#5b4d9e]";
 
 export const metadata = {
   title: "Contact & Location | AZUM Medical",
@@ -23,7 +32,7 @@ export default function ContactPage() {
         <section className="bg-[#faf9f7] py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 className="font-serif text-4xl font-semibold text-[#1f2937] sm:text-5xl">
-              Our Location
+              Azum Medical
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-[1.7] text-[#4b5563]">
               Visit us for personalized care in a comfortable, welcoming
@@ -42,52 +51,58 @@ export default function ContactPage() {
               {/* Left: Address, hours, contact */}
               <div className="space-y-10 lg:col-span-2">
                 <div className="rounded-2xl border border-[#ebe8f0]/80 bg-[#faf9f7]/50 p-6 shadow-sm">
-                  <h2 className="font-semibold text-[#1f2937]">Address</h2>
-                  <p className="mt-3 text-[#4b5563] leading-relaxed">
-                    {SITE_CONFIG.address.display}
-                  </p>
+                  <h2 className={contactCardTitle}>Address</h2>
+                  <p className={contactCardBody}>{SITE_CONFIG.address.display}</p>
                   <a
                     href={SITE_CONFIG.googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-block text-sm font-medium text-[#5b4d9e] hover:underline"
+                    className={`${contactLink} mt-3 inline-block text-sm font-medium`}
                   >
                     Open in Google Maps →
                   </a>
                 </div>
 
                 <div className="rounded-2xl border border-[#ebe8f0]/80 bg-[#faf9f7]/50 p-6 shadow-sm">
-                  <h2 className="flex items-center gap-2 font-semibold text-[#1f2937]">
-                    <ClockIcon className="h-5 w-5 shrink-0 text-[#5b4d9e]" />
+                  <h2
+                    className={`flex items-center gap-2 ${contactCardTitle}`}
+                  >
+                    <ClockIcon className="h-5 w-5 shrink-0 text-[#6b5d9e]" />
                     Hours of Operation
                   </h2>
-                  <div className="mt-4 grid grid-cols-[auto_1fr] gap-x-2 gap-y-3 text-sm">
-                    <span className="font-medium text-[#1f2937]">
-                      {SITE_CONFIG.hours.weekday.days}
-                    </span>
-                    <span className="font-normal text-[#4b5563]">
-                      {SITE_CONFIG.hours.weekday.time}
-                    </span>
-                    <span className="font-medium text-[#1f2937]">
-                      {SITE_CONFIG.hours.weekend.days}
-                    </span>
-                    <div className="font-normal text-[#4b5563]">
-                      <span>{SITE_CONFIG.hours.weekend.status}</span>
-                      <p className="mt-1.5 text-xs font-normal leading-snug text-[#6b7280]">
+                  <div className={`${contactCardBody} space-y-3`}>
+                    <p>
+                      <span className="font-medium text-[#1f2937]">
+                        {SITE_CONFIG.hours.weekday.days}
+                      </span>{" "}
+                      <span className="text-[#4b5563]">
+                        {SITE_CONFIG.hours.weekday.time}
+                      </span>
+                    </p>
+                    <p className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
+                      <span className="font-medium text-[#1f2937]">
+                        {SITE_CONFIG.hours.weekend.days}
+                      </span>
+                      <span className="text-[#4b5563]">
+                        {SITE_CONFIG.hours.weekend.status}
+                      </span>
+                      <span className="inline-flex items-center rounded-full border border-[#e1d9f3] bg-[#f5f3fa] px-2.5 py-1 text-[11px] font-medium leading-none text-[#4c4480] md:text-xs">
                         {SITE_CONFIG.hours.weekend.note}
-                      </p>
-                    </div>
+                      </span>
+                    </p>
                   </div>
                 </div>
 
                 <div className="rounded-2xl border border-[#ebe8f0]/80 bg-[#faf9f7]/50 p-6 shadow-sm">
-                  <h2 className="font-semibold text-[#1f2937]">Contact Info</h2>
-                  <ul className="mt-3 space-y-3 text-[#4b5563]">
+                  <h2 className={contactCardTitle}>Contact Info</h2>
+                  <ul className={`${contactCardBody} list-none space-y-3 p-0`}>
                     <li>
-                      <span className="font-medium text-[#1f2937]">Toll Free:</span>{" "}
+                      <span className="font-medium text-[#1f2937]">
+                        Toll Free:
+                      </span>{" "}
                       <a
                         href={SITE_CONFIG.phone.tollFreeTel}
-                        className="text-[#5b4d9e] hover:underline"
+                        className={contactLink}
                       >
                         {SITE_CONFIG.phone.tollFree} (2986)
                       </a>
@@ -96,7 +111,7 @@ export default function ContactPage() {
                       <span className="font-medium text-[#1f2937]">Local:</span>{" "}
                       <a
                         href={SITE_CONFIG.phone.localTel}
-                        className="text-[#5b4d9e] hover:underline"
+                        className={contactLink}
                       >
                         {SITE_CONFIG.phone.local} (2986)
                       </a>
@@ -105,7 +120,7 @@ export default function ContactPage() {
                       <span className="font-medium text-[#1f2937]">Email:</span>{" "}
                       <a
                         href={`mailto:${SITE_CONFIG.email}`}
-                        className="text-[#5b4d9e] hover:underline"
+                        className={contactLink}
                       >
                         {SITE_CONFIG.email}
                       </a>
@@ -168,6 +183,8 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
+
+        <ContactMessageForm />
 
         {/* CTA */}
         <section className="border-t border-[#ebe8f0] bg-[#faf9f7] py-14">
