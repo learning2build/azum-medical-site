@@ -64,3 +64,37 @@ body {
     border-color 0.15s ease-out, box-shadow 0.15s ease-out,
     transform 0.15s ease-out;
 }
+
+/* Floating quick nav — light fade only (width/radius snap to avoid janky morph) */
+.floating-nav-panel-in {
+  animation: floating-nav-panel-in 0.16s ease-out both;
+}
+
+@keyframes floating-nav-panel-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-nav-panel-in {
+    animation: none;
+  }
+}
+
+/* Close control: hidden until corner hover on fine pointers; always visible on touch */
+.floating-nav-close-btn {
+  opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .floating-nav-close-btn {
+    opacity: 0;
+  }
+  .floating-nav-corner:hover .floating-nav-close-btn,
+  .floating-nav-close-btn:focus-visible {
+    opacity: 1;
+  }
+}

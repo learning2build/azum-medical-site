@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/layout/MobileStickyCTA";
+import { SERVICE_HERO_BOOKING_BUTTON_CLASS } from "@/lib/service-hero-booking-cta";
 import { SITE_CONFIG } from "@/lib/site-config";
 import { SERVICES, isServiceComingSoon } from "@/lib/services-config";
 
@@ -16,16 +18,36 @@ export default function ServicesPage() {
     <>
       <Header />
       <main className="min-h-screen pb-24 md:pb-0">
-        <section className="bg-[#faf9f7] py-16 lg:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h1 className="font-serif text-4xl font-semibold text-[#1f2937] sm:text-5xl">
+        <section className="relative flex flex-col items-center justify-center px-4 py-11 text-center sm:py-12 lg:py-14">
+          <Image
+            src="/services/preventative-care/hero-038.jpg"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-[#5b4d9e]/88 to-[#4a3d82]/90"
+            aria-hidden
+          />
+          <div className="relative z-10 mx-auto max-w-3xl">
+            <h1 className="font-serif text-2xl font-semibold leading-snug text-balance text-white sm:text-[1.625rem] lg:text-[1.75rem]">
               Our Services
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-[1.7] text-[#4b5563]">
+            <p className="mt-5 text-lg leading-relaxed text-balance text-white/95 sm:text-xl">
               Comprehensive care designed around your health goals—from preventive
               screenings to chronic condition management and convenient telemedicine
               visits.
             </p>
+            <a
+              href={SITE_CONFIG.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${SERVICE_HERO_BOOKING_BUTTON_CLASS} mt-8`}
+            >
+              Book Appointment
+            </a>
           </div>
         </section>
 
@@ -80,7 +102,7 @@ export default function ServicesPage() {
                 href={SITE_CONFIG.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-h-[48px] rounded-full bg-[#5b4d9e] px-6 py-3 text-center font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#4a3d82] hover:shadow-md"
+                className="min-h-[48px] rounded-full bg-[#5b4d9e] px-6 py-3 text-center font-semibold text-white shadow-[0_2px_12px_rgba(74,61,130,0.35)] transition-all duration-150 hover:bg-[#4a3d82] hover:shadow-[0_4px_16px_rgba(74,61,130,0.4)]"
               >
                 Book an Appointment
               </a>

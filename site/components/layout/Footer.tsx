@@ -59,49 +59,67 @@ export function Footer() {
                 <span className="font-medium text-[#1f2937]">
                   {SITE_CONFIG.hours.weekend.days}
                 </span>
-                <div className="font-normal text-[#4b5563]">
-                  <span>{SITE_CONFIG.hours.weekend.status}</span>
-                  <p className="mt-1 text-xs font-normal leading-snug text-[#6b7280]">
+                <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="font-normal text-[#4b5563]">
+                    {SITE_CONFIG.hours.weekend.status}
+                  </span>
+                  <span
+                    className="inline-flex items-center rounded-full border border-[#dcd4ef]/90 bg-gradient-to-r from-[#faf9ff] to-[#f3effa] px-2.5 py-1 text-[11px] font-medium leading-none text-[#5b4d9e] shadow-sm ring-1 ring-white/90 md:text-xs"
+                  >
                     {SITE_CONFIG.hours.weekend.note}
-                  </p>
+                  </span>
                 </div>
               </div>
             </div>
 
             <div className="min-w-0">
               <h3 className={FOOTER_SECTION_TITLE}>Quick Links</h3>
-              <ul className="mt-2 flex flex-col gap-y-2">
-                {FOOTER_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-[#4b5563] hover:text-[#5b4d9e] hover:underline"
+              <div className="mt-2 flex w-full flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-10">
+                <ul className="flex min-w-0 flex-col gap-y-2">
+                  {FOOTER_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-[#4b5563] hover:text-[#5b4d9e] hover:underline"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <div className="w-full shrink-0 rounded-2xl border border-[#cfc4e8]/80 bg-gradient-to-b from-[#fcfbff] to-[#f3effa] p-5 shadow-[0_4px_24px_rgba(74,61,130,0.09)] md:w-auto md:min-w-[12.5rem] md:p-6">
+                  <a
+                    href={SITE_CONFIG.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[#5b4d9e] px-6 py-3 text-sm font-semibold text-white shadow-[0_2px_12px_rgba(74,61,130,0.35)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[#4a3d82] hover:shadow-[0_4px_16px_rgba(74,61,130,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5b4d9e] md:whitespace-nowrap"
+                  >
+                    Book Appointment
+                    <svg
+                      className="h-4 w-4 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
                     >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-3">
-                <a
-                  href={SITE_CONFIG.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#5b4d9e] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#4a3d82] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5b4d9e]"
-                >
-                  Book Appointment
-                </a>
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
         {/* Brand: divider above, then centered logo + tagline */}
-        <div className="mt-6 border-t border-[#ebe8f0] pt-5 pb-6 lg:pt-6 lg:pb-7">
+        <div className="mt-4 border-t border-[#ebe8f0] pt-3 pb-5 lg:pt-4 lg:pb-6">
           <div className="flex flex-col items-center text-center">
             {/* Tight crop: scale inside overflow-hidden trims transparent padding in the PNG */}
             <Link
               href="/"
-              className="relative mb-3 block h-[6.25rem] w-[13.5rem] max-w-[min(100%,13.5rem)] overflow-hidden sm:h-[6.75rem] sm:w-[14.5rem] sm:max-w-[14.5rem]"
+              className="relative mb-2.5 block h-[6.25rem] w-[13.5rem] max-w-[min(100%,13.5rem)] overflow-hidden sm:h-[6.75rem] sm:w-[14.5rem] sm:max-w-[14.5rem]"
             >
               <Image
                 src="/site:azum-medical-logo.png"

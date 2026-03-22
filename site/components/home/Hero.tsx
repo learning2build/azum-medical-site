@@ -3,8 +3,8 @@ import { SITE_CONFIG } from "@/lib/site-config";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[85vh] overflow-hidden bg-gradient-to-br from-[#f5f3f8] via-[#faf9f7] to-[#ebe8f0]">
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-20 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#f5f3f8] via-[#faf9f7] to-[#ebe8f0]">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 pt-6 pb-10 sm:px-6 sm:pt-8 lg:flex-row lg:items-center lg:gap-16 lg:px-8 lg:pt-10 lg:pb-12">
         {/* Text content */}
         <div className="flex-1 text-center lg:text-left">
           <p className="text-sm font-medium uppercase tracking-widest text-[#5b4d9e]">

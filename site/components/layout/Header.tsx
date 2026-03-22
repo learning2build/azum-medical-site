@@ -85,7 +85,7 @@ export function Header() {
             width={267}
             height={116}
             className={`w-auto transition-all duration-200 ${
-              isScrolled ? "h-40 sm:h-48" : "h-56 sm:h-64"
+              isScrolled ? "h-20 sm:h-24" : "h-32 sm:h-36"
             }`}
             priority
           />

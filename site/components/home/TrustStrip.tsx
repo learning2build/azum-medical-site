@@ -87,7 +87,7 @@ const TRUST_ITEMS = [
 
 export function TrustStrip() {
   return (
-    <section className="bg-[#f5f3f8] py-16 lg:py-20">
+    <section className="bg-[#f5f3f8] pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-10 lg:pb-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {TRUST_ITEMS.map((item) => (

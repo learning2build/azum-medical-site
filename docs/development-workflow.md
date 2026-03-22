@@ -92,6 +92,23 @@ Push triggers **GitHub → Vercel → new deployment**.
 
 Check **Vercel → Project → Deployments** after a push. If deploy fails: read Vercel logs, confirm root is `site`, and run `cd site && npm run build` locally.
 
+Add **Environment Variables** in Vercel for anything in `site/.env.example` (e.g. contact form — see below).
+
+---
+
+## Contact form (Resend)
+
+The **Send Us a Message** block on `/contact` POSTs to `POST /api/contact`, which sends email via [Resend](https://resend.com).
+
+1. Sign up at Resend, create an **API key**.
+2. In `site/`, copy `.env.example` → `.env.local` and set:
+   - **`RESEND_API_KEY`** — required.
+   - **`CONTACT_EMAIL_TO`** — optional; defaults to `cryph00@gmail.com`.
+   - **`CONTACT_FROM_EMAIL`** — sender shown in the inbox (must be allowed in Resend). Until you [verify a domain](https://resend.com/docs/dashboard/domains/introduction), use Resend’s test sender, e.g. `AZUM Medical <onboarding@resend.dev>` (often limited to the email on your Resend account).
+3. Redeploy with the same variables in **Vercel → Settings → Environment Variables**.
+
+Without `RESEND_API_KEY`, the API returns 503 and the form shows a configuration error.
+
 ---
 
 ## Production URL

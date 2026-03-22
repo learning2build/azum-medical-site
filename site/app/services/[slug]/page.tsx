@@ -3,6 +3,12 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileStickyCTA } from "@/components/layout/MobileStickyCTA";
+import { AcuteCareServiceContent } from "@/components/services/AcuteCareServiceContent";
+import { ChronicConditionServiceContent } from "@/components/services/ChronicConditionServiceContent";
+import { HolisticWellnessServiceContent } from "@/components/services/HolisticWellnessServiceContent";
+import { PreventativeCareServiceContent } from "@/components/services/PreventativeCareServiceContent";
+import { WeightManagementServiceContent } from "@/components/services/WeightManagementServiceContent";
+import { TelemedicineServiceContent } from "@/components/services/TelemedicineServiceContent";
 import { SITE_CONFIG } from "@/lib/site-config";
 import {
   getServiceBySlug,
@@ -25,10 +31,122 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
+function ServiceBottomCta() {
+  return (
+    <section className="border-t border-[#ebe8f0] bg-[#faf9f7] py-14">
+      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <p className="text-lg text-[#4b5563]">
+          Schedule a visit or ask us how we can support your care.
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={SITE_CONFIG.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="min-h-[48px] rounded-full bg-[#5b4d9e] px-6 py-3 text-center font-semibold text-white shadow-[0_2px_12px_rgba(74,61,130,0.35)] transition-all duration-150 hover:bg-[#4a3d82] hover:shadow-[0_4px_16px_rgba(74,61,130,0.4)]"
+          >
+            Book an Appointment
+          </a>
+          <Link
+            href="/contact"
+            className="min-h-[48px] rounded-full border-2 border-[#5b4d9e] px-6 py-3 text-center font-semibold text-[#5b4d9e] transition-all duration-150 hover:bg-[#5b4d9e] hover:text-white"
+          >
+            Contact Us
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) notFound();
+
+  if (slug === "telemedicine") {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen pb-24 md:pb-0">
+          <TelemedicineServiceContent />
+          <ServiceBottomCta />
+        </main>
+        <Footer />
+        <MobileStickyCTA />
+      </>
+    );
+  }
+
+  if (slug === "preventative-care") {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen pb-24 md:pb-0">
+          <PreventativeCareServiceContent />
+          <ServiceBottomCta />
+        </main>
+        <Footer />
+        <MobileStickyCTA />
+      </>
+    );
+  }
+
+  if (slug === "acute-care") {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen pb-24 md:pb-0">
+          <AcuteCareServiceContent />
+          <ServiceBottomCta />
+        </main>
+        <Footer />
+        <MobileStickyCTA />
+      </>
+    );
+  }
+
+  if (slug === "chronic-condition-management") {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen pb-24 md:pb-0">
+          <ChronicConditionServiceContent />
+          <ServiceBottomCta />
+        </main>
+        <Footer />
+        <MobileStickyCTA />
+      </>
+    );
+  }
+
+  if (slug === "holistic-wellness") {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen pb-24 md:pb-0">
+          <HolisticWellnessServiceContent />
+          <ServiceBottomCta />
+        </main>
+        <Footer />
+        <MobileStickyCTA />
+      </>
+    );
+  }
+
+  if (slug === "weight-management") {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen pb-24 md:pb-0">
+          <WeightManagementServiceContent />
+          <ServiceBottomCta />
+        </main>
+        <Footer />
+        <MobileStickyCTA />
+      </>
+    );
+  }
 
   return (
     <>
@@ -61,29 +179,7 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </section>
 
-        <section className="border-t border-[#ebe8f0] bg-[#faf9f7] py-14">
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <p className="text-lg text-[#4b5563]">
-              Schedule a visit or ask us how we can support your care.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href={SITE_CONFIG.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-h-[48px] rounded-full bg-[#5b4d9e] px-6 py-3 text-center font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#4a3d82] hover:shadow-md"
-              >
-                Book an Appointment
-              </a>
-              <Link
-                href="/contact"
-                className="min-h-[48px] rounded-full border-2 border-[#5b4d9e] px-6 py-3 text-center font-semibold text-[#5b4d9e] transition-all duration-150 hover:bg-[#5b4d9e] hover:text-white"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </section>
+        <ServiceBottomCta />
       </main>
       <Footer />
       <MobileStickyCTA />
