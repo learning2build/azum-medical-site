@@ -19,9 +19,6 @@ export const SITE_CONFIG = {
   },
   email: "info@azummedical.com",
 
-  /** Recipient for the “Send Us a Message” contact form (mailto flow). */
-  contactFormEmail: "cryph00@gmail.com",
-
   // Location — used for Hero kicker and TrustStrip
   locationCity: "Houston",
 
